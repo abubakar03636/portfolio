@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import personalimg from "../assets/unnamed.png";
 
 export default function Home() {
   const [showImage, setShowImage] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollDirection = useRef("up");
 
   const skills = [
     "React", "HTML", "CSS", "JavaScript", "Node.js",
@@ -12,10 +14,22 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const aboutSection = document.getElementById("about");
-      if (aboutSection) {
-        const rect = aboutSection.getBoundingClientRect();
-        setShowImage(rect.top > 400);
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction
+      if (currentScrollY > lastScrollY.current) {
+        scrollDirection.current = "down";
+      } else {
+        scrollDirection.current = "up";
+      }
+      
+      lastScrollY.current = currentScrollY;
+      
+      // Show/hide image based on scroll direction
+      if (scrollDirection.current === "down") {
+        setShowImage(false);
+      } else {
+        setShowImage(true);
       }
     };
 
@@ -39,13 +53,13 @@ export default function Home() {
   return (
     <section
       id="home"
-      className=" w-full  min-h-screen border-b rounded-xl flex flex-row sm:flex-row mt-14 justify-between px-4 sm:px-6 lg:px-10 py-2 bg-gray-900 text-yellow-300 overflow-hidden"
+      className="relative w-full min-h-screen border-b rounded-xl flex flex-row sm:flex-row mt-14 justify-between px-4 sm:px-6 lg:px-10 py-2 bg-gray-900 text-yellow-300 overflow-hidden"
     >
       {/* CV Download Button */}
       <a
         href="/CV.pdf"
         download
-        className="absolute top-8 mt-10 left-2 sm:left-8 bg-gray-800 text-yellow-300 px-4 py-2 rounded-2xl font-semibold shadow-md hover:bg-gray-700 transition z-20"
+        className="absolute top-8 mt-1 left-2 sm:left-8 bg-gray-800 text-yellow-300 px-4 py-2 rounded-2xl font-semibold shadow-md hover:bg-gray-700 transition z-20"
       >
         Download CV
       </a>
@@ -91,18 +105,25 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* Profile Image */}
-      {showImage && (
-  <motion.img
-    initial={{ opacity: 0, x: 30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 1 }}
-    src={personalimg}
-    alt="Profile"
-    className=" top-4 right-4 sm:right-10 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 md:top-10 object-cover rounded-full shadow-lg "
-  />
-)}
-
+      {/* Profile Image - Now with absolute positioning */}
+      <motion.div
+        className="absolute top-4 right-4 sm:right-10"
+        initial={{ opacity: 1 }}
+        animate={{ 
+          opacity: showImage ? 1 : 0,
+          y: showImage ? 0 : 20
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.img
+          src={personalimg}
+          alt="Profile"
+          className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 object-cover rounded-full shadow-lg"
+          initial={{ x: 30 }}
+          animate={{ x: showImage ? 0 : 30 }}
+          transition={{ duration: 1 }}
+        />
+      </motion.div>
     </section>
   );
 }
