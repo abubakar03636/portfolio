@@ -59,7 +59,7 @@ export default function Home() {
       <a
         href="/CV.pdf"
         download
-        className="absolute top-8 mt-1 left-2 sm:left-8 bg-gray-800 text-yellow-300 px-4 py-2 rounded-2xl font-semibold shadow-md hover:bg-gray-700 transition z-20"
+        className="absolute top-0 mt-0  left-2 sm:left-8 bg-gray-800 text-yellow-300 px-4 py-2 rounded-2xl font-semibold shadow-md hover:bg-gray-700 transition z-20"
       >
         Download CV
       </a>
