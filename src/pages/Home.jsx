@@ -15,7 +15,7 @@ export default function Home() {
       const aboutSection = document.getElementById("about");
       if (aboutSection) {
         const rect = aboutSection.getBoundingClientRect();
-        setShowImage(rect.top > 600);
+        setShowImage(rect.top > 400);
       }
     };
 
