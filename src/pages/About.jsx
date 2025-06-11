@@ -5,20 +5,20 @@ import { ArrowRight } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "Online Earning App",
-    description: "A responsive web app with user authentication and live data sync.",
+    title: "Word Press Websites",
+    description: "A responsive web app with user authentication.",
     link: "https://meer-rind.github.io/online-earning-app/",
   },
   {
     id: 2,
-    title: "Project Two",
-    description: "A modern landing page built with React and Tailwind CSS.",
+    title: "React JS Websites",
+    description: "A modern Websites are designed by React js with Tailwind CSS, Bootstrap and Material UI.",
     link: "https://example.com/project2",
   },
   {
     id: 3,
-    title: "Project Three",
-    description: "A portfolio project integrating email forms and animations.",
+    title: "Web Flow Websites",
+    description: "A portfolio Websites deve;oped by with No Code platform and project integrating email forms and animations.",
     link: "https://example.com/project3",
   },
 ];

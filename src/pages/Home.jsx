@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import personalimg from "../assets/unnamed.png";
 
 export default function Home() {
   const [showImage, setShowImage] = useState(true);
@@ -96,7 +97,7 @@ export default function Home() {
     initial={{ opacity: 0, x: 30 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 1 }}
-    src="src/assets/unnamed.png"
+    src={personalimg}
     alt="Profile"
     className=" top-4 right-4 sm:right-10 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 md:top-10 object-cover rounded-full shadow-lg "
   />
